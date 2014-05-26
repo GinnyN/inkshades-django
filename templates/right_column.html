@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<div class="social" style="clear: both; text-align: center;">
+	{% if settings.facebook %}
+	<a href={{ settings.facebook }} class="badge-social badge">
+			<img src="{% static 'img/facebook.png' %}" class="img-responsive facebook"/>
+	</a>
+	{% endif %}
+	{% if settings.twitter %}
+	<a href={{ settings.twitter }}  class="badge badge-social">
+			<img src="{% static 'img/twitter.png' %}" class="img-responsive twitter"/>
+	</a>
+	{% endif %}
+	{% if settings.deviantart %}
+	<a href="{{ setting.deviantart }}" class="badge badge-social">
+		<img src="{% static 'img/deviantart.png' %}" class="img-responsive"/>
+	</a>
+	{% endif %}
+	{% if settings.rss %}
+	<!--<span class="badge badge-social">
+		<img src="{% static 'img/rss.png' %}" class="img-responsive rss"/>
+	</span>-->
+	{% endif %}
+	{% if settings.subcultura %}
+	<a href="{{ setting.subcultura }}" class="badge badge-social">
+		<img src="{% static 'img/subcultura.png' %}" class="img-responsive rss"/>
+	</a>
+	{% endif %}
+	{% if settings.tumblr %}
+	<a  href="{{ setting.tumblr }}" class="badge badge-social">
+		<img src="{% static 'img/tumblr.png' %}" class="img-responsive rss"/>
+	</a>
+	{% endif %}
+</div>
+{% if publicity %}
+<a href="{{ publicity.url }}" target="_blank"> 
+	<img src="/media/{{ publicity.image }}" class="img-thumbnail publicidad"/>
+</a>
+{% endif %}
+{% if afiliates %}
+<div class="list-group pull-right col-sm-6 col-md-12">
+    <h4 class="list-group-item-heading">Afiliados</h4>
+    {% for a in afiliates %}
+     	<a href="{{a.url}}" target="_blank">
+     		<img src="/media/{{a.image}}" class="img-thumbnail publicidad"/>
+     	</a>
+    {% endfor %}
+</div>
+{% endif %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}
+Obras
+{% endblock %}
+{%block menu-obras %}class="active"{% endblock %}
+{%block menu-obras-movil %}class="active"{% endblock %}
+{% block body %}
+<h2>Obras</h2>
+{% if tag %}
+<h3>
+	<span class="badge-social badge dot" style="width:0.5em; height:0.5em; margin-top: -0.25em; display: inline-block !important"></span>
+	{{ tag }}
+</h3>
+{% endif %}
+{% if autor %}
+<h3>
+  <span class="badge-social badge dot" style="width:0.5em; height:0.5em; margin-top: -0.25em; display: inline-block !important"></span>
+  {{ autor.user.username }}
+</h3>
+{% endif %}
+<ul class="media-list">
+{% for obra in obras %}
+  <li class="media well">
+    <a class="pull-left media-img" href="#">
+      <img class="media-object img-responsive" src="/media/{{ obra.cover }}" alt="...">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading"><a href="{% url 'obra' id=obra.pk %}">{{ obra.title }}</a></h4>
+       <p class="fecha">por <a href="{% url 'autor' id=obra.author.pk %}"> {{ obra.author.user.username }} </a></p>
+       <p>
+          {% for link in links %} 
+            {% if link.obra == obra %}
+       		 <a href="{{link.url}}" class="btn btn-default">{{link.title}}</a>
+            {%endif%}
+          {% endfor %}
+       </p>
+       <p><strong>{{obra.get_status_display}}</strong></p>
+      {{ obra.resume|safe }}
+      <p>
+      	<div class="tags">
+      		{% for tag in obra.tags.all %}
+				<a href='{% url "tags" tag=tag.name %}' class="badge pull-right">{{ tag.name }}</a>
+      		{% endfor %}
+		</div>
+	</p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

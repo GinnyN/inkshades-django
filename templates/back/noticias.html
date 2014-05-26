@@ -1,0 +1,25 @@
+{% extends "head.html" %}
+{% block body %}
+<a href="{% url "new-news" %}" class="btn btn-primary">Nueva Noticia</a>
+<hr/>
+<div class="panel-group" id="accordion">
+	{% for new in news %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{new.pk}}">
+          {{new.title}} - {{new.date}} 
+          <a href={% url 'delete-news' id=new.pk %} class="btn btn-danger pull-right delete">Borrar</a> 
+          <a href={% url 'update-news' id=new.pk %} class="btn btn-primary pull-right">Editar</a>
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{new.pk}}" class="panel-collapse collapse">
+      <div class="panel-body">
+       	{{ new.body|safe }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

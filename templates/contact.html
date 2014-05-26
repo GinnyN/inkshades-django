@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+Contacto
+{% endblock %}
+{%block menu-contacto %}class="active"{% endblock %}
+{%block menu-contacto-movil %}class="active"{% endblock %}
+{% block body %}
+<h2>Contacto</h2>
+<form action="{% url 'contacto'%}" method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button class="btn btn-danger"> Enviar </button>
+</form>
+{% endblock %}

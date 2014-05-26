@@ -1,0 +1,18 @@
+{% extends "head.html" %}
+{% block body %}
+<a href="{% url "portfolio-new" %}" class="btn btn-primary">Nueva Imagen</a>
+<hr/>
+	{% for new in image %}
+  <div class="well col-xs-3">
+      <h4>
+          {{new.title}}
+          <a href={% url 'portfolio-delete' id=new.pk %} class="btn btn-danger pull-right delete">Borrar</a> 
+          <a href={% url 'portfolio-edit' id=new.pk %} class="btn btn-primary pull-right">Editar</a>
+        </a>
+      </h4>
+       <a href="/media/{{new.cover}}" rel="shadowbox">
+        <img src="/media/{{new.cover}}" class="img-responsive"/>
+      </a>
+  </div>
+  {% endfor %}
+{% endblock %}

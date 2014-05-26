@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+Autores
+{% endblock %}
+{%block menu-autores %}class="active"{% endblock %}
+{%block menu-autores-movil %}class="active"{% endblock %}
+{% block body %}
+<h2>Autores</h2>
+<ul class="media-list">
+	{% for autor in autores %}
+  <li class="media well">
+    <a class="pull-left media-img" href="autores-detail.html">
+      <img class="media-object img-responsive" src="/media/{{autor.avatar}}" alt="...">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading"><a href="{% url "autor" id=autor.pk %}">{{autor.user.username}}</a></h4>
+       <p>
+       		{% for link in links %} 
+            	{% if link.author == autor %}
+       		 		<a href="{{link.url}}" class="btn btn-default">{{link.title}}</a>
+            	{%endif%}
+          {% endfor %}
+       	</p>
+       <p>
+      		{{autor.bio}}
+      	</p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

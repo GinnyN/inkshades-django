@@ -1,0 +1,9 @@
+{% extends "head.html" %}
+{% block body %}
+<h2> Editar Obra </h2>
+<form action="" method=POST enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button class="btn btn-primary">Postear</button>
+</form>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "head.html" %}
+{% block body %}
+<h2>Perfil</h2>
+<hr/>
+<a href={% url 'perfil-password' %} class="btn btn-block btn-lg btn-primary">Cambiar Contraseña</a>
+<a href={% url 'perfil-info' %} class="btn btn-block btn-lg btn-success">Cambiar Información</a>
+{% endblock %}

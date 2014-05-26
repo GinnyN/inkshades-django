@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}
+{{ obra.title }}
+{% endblock %}
+{%block menu-obras %}class="active"{% endblock %}
+{%block menu-obras-movil %}class="active"{% endblock %}
+{% block body %}
+<h2>{{ obra.title }}</h2>
+<h3>Por {{obra.author.user.username}}</h3>
+{% for link in links %} 
+	<a href="{{link.url}}" class="btn btn-default">{{link.title}}</a>
+{% endfor %}
+<div class="media">
+	<div class="media-img pull-left">
+		<img src="/media/{{obra.cover}}" class="img-responsive">
+	</div>
+	<div class="media-body">
+		<div class="tags">
+			{% for tag in obra.tags.all %}
+				<a href='{% url "tags" tag=tag.name %}' class="badge pull-right">{{ tag.name }}</a>
+      		{% endfor %}
+		</div>
+		{{ obra.resume }}
+	</div>
+</div>
+<div class="panel-group" id="accordion">
+	{% for chapter in chapters %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{chapter.pk}}">
+          {{chapter.title}}
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{chapter.pk}}" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div class="media well">
+			<div class="media-img pull-left">
+				<img src="/media/{{chapter.cover}}" class="img-responsive">
+			</div>
+			<div class="media-body">
+				{{chapter.resume|safe}}
+			</div>
+		</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

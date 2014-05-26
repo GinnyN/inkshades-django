@@ -1,0 +1,42 @@
+{% extends "head.html" %}
+{% block body %}
+<a href="{% url "new-obras" %}" class="btn btn-primary">Nueva Obra</a>
+<a href="{% url 'new-tag' %}" class="btn btn-success">Agregar Tags</a>
+<hr/>
+<div class="panel-group" id="accordion">
+	{% for new in obras %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{new.pk}}">
+          {{new.title}} 
+          <a href={% url 'delete-obras' id=new.pk %} class="btn btn-danger pull-right delete">Borrar</a> 
+          <a href={% url 'update-obras' id=new.pk %} class="btn btn-primary pull-right">Editar</a>
+          <a href={% url 'tag-obras' id=new.pk %} class="btn btn-success pull-right">Editar Tags</a>
+          <a href={% url 'link-obras' id=new.pk %} class="btn btn-warning pull-right">Editar Links</a>
+          <a href={% url 'chapter-obras' id=new.pk %} class="btn btn-info pull-right">Editar Capitulos</a>
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{new.pk}}" class="panel-collapse collapse">
+      <div class="panel-body">
+        <figure class="col-xs-2">
+       	  <img src="/media/{{new.cover}}" class="img-responsive"/>
+        </figure>
+        <p>
+          {% for link in links %} 
+            {% if link.obra == new %}
+           <a href="{{link.url}}" class="btn btn-default">{{link.title}}</a>
+            {%endif%}
+          {% endfor %}
+        </p>
+        {{new.resume|safe}}
+          {% for tag in new.tags.all %}
+        <a href='{% url "tags" tag=tag.name %}' class="badge pull-right">{{ tag.name }}</a>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

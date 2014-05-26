@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+Punto de Venta
+{% endblock %}
+{%block menu-venta %}class="active"{% endblock %}
+{%block menu-venta-movil %}class="active"{% endblock %}
+{% block body %}
+<h2>Puntos de Venta</h2>
+<ul class="media-list">
+	{% for v in venta %}
+  <li class="media well">
+    <a class="pull-left media-img" href="autores-detail.html">
+      <img class="media-object img-responsive" src="/media/{{v.image}}" alt="...">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">{{v.name}}</h4>
+       <h5>{{v.address}} - {{v.ciudad}}</h5>
+       <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{v.address}} {{v.ciudad}}%2C%20Chile&key=AIzaSyBPDa2jr9OBQMte9TmXnJU0mppf-vOSbys"></iframe>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+Página {{ pages_number}}
+{% endblock %}
+{% block body %}
+{% if author %}
+<h2>Posts por: {{author.user.username}}</h2>
+{% endif %}
+{% for post in posts %}
+<div class="row">
+	<div class="col-sm-2 hidden-xs">
+		<img src="/media/{{post.author.avatar}}" class="img-responsive" style="width: 100%;">
+		<p class="user">{{ post.author.user.username }}</p>
+	</div>
+	<a href="{% url 'post' post_id=post.pk %}"> <h3 class="col-md-10">{{ post.title }}</h3> </a>
+	<p class="user hidden-sm hidden-md hidden-lg">Por: {{ post.author.user.username }}</p>
+	<p class="fecha"> {{post.date}} </p>
+	{{ post.body|safe }}
+</div>
+	<hr/>
+{% endfor %}
+<div class="row pagination-container">
+	<ul class="pagination">
+	  <li {%if not previous%}class="disabled"{%endif%} ><a href="
+	  	{% if authorLink %}
+	  		{% url 'page-author' page_nro=page_previous id=authorLink %}
+	  	{% else %}
+	  		{% url 'page' page_nro=page_previous %}
+	  	{%endif%}
+	  	">&laquo;</a></li>
+	  {%for number in number_pages%}
+	  	<li {%if number == pages_number%}class="active"{%endif%}><a href="{% if authorLink %}
+	  		{% url 'page-author' page_nro=number id=authorLink %}
+	  	{% else %}
+	  		{% url 'page' page_nro=number %}
+	  	{%endif%}">{{number}}</a></li>
+	  {% endfor %}
+	  <li {%if not next%}class="disabled"{%endif%} ><a href="
+	  	{% if authorLink %}
+	  		{% url 'page-author' page_nro=page_next id=authorLink %}
+	  	{% else %}
+	  		{% url 'page' page_nro=page_next %}
+	  	{%endif%}">&raquo;</a></li>
+	</ul>
+</div>
+{% endblock %}

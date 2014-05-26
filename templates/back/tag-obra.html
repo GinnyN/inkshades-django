@@ -1,0 +1,15 @@
+{% extends "head.html" %}
+{% block body %}
+<h2> Editar Obra </h2>
+<h3> Añadir Tags </h3>
+<hr/>
+<form action="" method=POST enctype="multipart/form-data">
+	{% csrf_token %}
+	{%for tag in tags%}
+	<input {% if tag in obra.tags.all %} checked=checked {%endif%}type=checkbox name="{{tag.pk}}"/>
+	{{tag.name}}
+	{%endfor%}
+	<hr/>
+	<button class="btn btn-primary">Postear</button>
+</form>
+{% endblock %}

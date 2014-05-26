@@ -1,0 +1,129 @@
+*{
+	font-family: 'Gudea', sans-serif;
+}
+a{
+	color:#aa2222;
+}
+a:hover{
+	color:#aa2222;
+}
+.row{
+	margin-right: 0;
+	margin-left: 0;
+}
+body{
+	background: rgba(255,253,253,1);
+}
+nav.dropdown{
+	padding: 0.5em;
+	margin-bottom: 0.5em;
+}
+nav, .nav, .copyright{
+	background: #cc2222;
+}
+nav.dropdown a{
+	width: 100%;
+	display: block;
+}
+nav .dropdown-menu, nav .dropdown-menu a, nav .dropdown-menu a:hover{
+	width: 100%;
+	color: #fffdfd !important;
+	background: #cc2222 !important;
+}
+nav a, .nav a, .copyright{
+	color: #fffdfd;
+}
+p{
+	margin: 1em 0;
+}
+.copyright{
+	padding: 0.5em;
+	margin-top: 0.5em;
+}
+.media-body{
+	clear: left;
+}
+.media-img{
+	display: inline-block;
+}
+@media (min-width: 768px) { 
+	.media-body{
+		clear: none;
+	}
+	.media .media-img{
+		width: 15em;
+	}
+}
+nav a:hover,.nav a:hover, .nav li.active a:hover, nav li.active a:hover{
+	color: #100000;
+	background:#fffdfd;
+}
+nav li.active a, .nav li.active a{
+	background: #aa2222;
+}
+.carousel-caption{
+	background: rgba(255,253,253,0.9);
+	right: 0;
+	left: 0;
+	width: 100%;
+	text-align: right;
+	font-family: 'Gudea', sans-serif;
+	color: #100000;
+}
+.carousel-caption h2, .list-group-item-heading, .media-heading, h2, h3, h4, h5, h6{
+	color: #aa2222 !important;
+}
+.carousel-caption h2, .list-group-item-heading, .media-heading, .fecha, h2, h3, h4, h5, h6, .list-group.visible-xs{
+	font-family: "Coustard", serif;
+}
+.user{
+	background: #100000;
+	color:#fffdfd;
+	text-align: center;
+}
+.tags{
+	overflow: hidden;
+	display: block;
+	clear: both;
+	margin: 0.5em;
+}
+.badge-social, .tags .badge{
+	background: #aa2222 !important;
+}
+.badge-social{
+	width: 5em;
+	border-radius: 2.5em;
+	height: 5em;
+	padding-top: 1em;
+}
+.badge-social img{
+	padding-top: 0.25em;
+}
+.badge-social img.facebook{
+	max-width: 50%;
+	margin: auto;
+	margin-top: 2px;
+}
+.badge-social img.twitter, .badge-social img.rss{
+	margin-top: -10px;
+}
+ .publicidad, #accordion{
+	margin: 2em 0;
+}
+.social{
+	padding: 2em 0;
+}
+.publicidad{
+	margin-left: auto;
+	margin-right: auto;
+}
+.overflow-hidden{
+	overflow: hidden;
+}
+.square{
+	width: 4em;
+	height: 4em;
+}
+.pagination-container{
+	text-align: center;
+}

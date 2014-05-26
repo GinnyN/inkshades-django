@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+Home 
+{% endblock %}
+{% block menu-index %} class="active" {% endblock %}
+{%block menu-index-movil %} class="active" {% endblock %}
+{% block carousel %}
+<div id="carousel-example-generic" class="carousel slide jumbotron">
+	<!-- Indicators -->
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+  {% for spot in spotlight %}
+    <div class="item {% if forloop.first %}active {%endif%}">
+      <img src="/media/{{ spot.spotlight_image }}">
+      <div class="carousel-caption">
+        <h2><a href="{% url 'post' post_id=spot.pk %}">{{ spot.title}}</a></h2>
+      </div>
+    </div>
+   {% endfor %}
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+</div>
+{% endblock %}
+{% block body %}
+	{% for post in posts %}
+	<div class="row">
+	  <a class="pull-left col-md-2 hidden-xs hidden-sm" href="#">
+	    <img class="img-responsive" src="/media/{{post.author.avatar}}" alt="...">
+	    <p class="user">{{ post.author.user.username }}</p>
+	  </a>
+	  <div class="col-md-10">
+	    <a href="{% url 'post' post_id=post.pk %}"> <h4 class="media-heading">{{ post.title }}</h4> </a>
+	    <p class="fecha">{{post.date}}</p>
+	    <p class="fecha visible-xs visible-sm">Por: {{ post.author.user.username }}</p>
+	   	{{ post.body|safe }}
+	   <!-- <div class="tags">
+	    	<span class="badge pull-right">Tutorials</span> <span class="badge pull-right">Randomness</span>
+	    </div>-->
+	  </div>
+	</div>
+
+	<hr/>
+
+	{% endfor %}
+	<a href="{% url 'page' page_nro=1 %}" class="btn btn-default pull-right"> Noticias Anteriores </a>
+{% endblock %}

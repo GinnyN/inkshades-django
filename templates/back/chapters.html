@@ -1,0 +1,32 @@
+{% extends "head.html" %}
+{% block body %}
+<h2> Editar Obra </h2>
+<h3> Editar Capítulos </h3>
+<p>
+	<a href={% url 'chapter-new' id=id %} class="btn btn-primary">Nuevo Capítulo</a>
+</p>
+<hr/>
+<div class="panel-group" id="accordion">
+	{% for new in chapters %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{new.pk}}">
+          {{new.title}} 
+          <a href={% url 'chapter-delete' id_chapter=new.pk id=id %} class="btn btn-danger pull-right delete">Borrar</a> 
+          <a href={% url 'chapter-edit' id_chapter=new.pk id=id %} class="btn btn-primary pull-right">Editar</a>
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{new.pk}}" class="panel-collapse collapse">
+      <div class="panel-body">
+        <figure class="col-xs-2">
+       	  <img src="/media/{{new.cover}}" class="img-responsive"/>
+        </figure>
+        {{new.resume|safe}}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

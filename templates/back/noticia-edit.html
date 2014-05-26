@@ -1,0 +1,10 @@
+{% extends "head.html" %}
+{% block body %}
+<h2> Nueva Noticia </h2>
+<form action="" method=POST enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="hidden" value="{{id}}"/>
+	<button class="btn btn-primary">Postear</button>
+</form>
+{% endblock %}

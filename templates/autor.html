@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}
+{{autor.user.username}}
+{% endblock %}
+{%block menu-autores %}class="active"{% endblock %}
+{%block menu-autores-movil %}class="active"{% endblock %}
+{% block body %}
+<h2>{{autor.user.username}}</h2>
+{% for link in links %} 
+	<a href="{{link.url}}" class="btn btn-default">{{link.title}}</a>
+{% endfor %}
+<div class="media">
+	<div class="media-img pull-left">
+		<img src="/media/{{autor.avatar}}" class="img-responsive">
+	</div>
+	<div class="media-body">
+		{{autor.bio|safe}}
+	</div>
+</div>
+<div class="well">
+     <h3> Obras</h3>
+    <div class="row">
+    	{% for obra in obras|slice:":4" %}
+	    	<div class="well">
+	    		<figure class="col-sm-2">
+	    			<img src="/media/{{obra.cover}}" class="img-responsive">
+	    		</figure>
+	    		<h4>
+	    			<a href={% url 'obra' id=obra.pk %} class="fecha">{{obra.title}}</a>
+	    		</h4>
+	    		{{obra.resume|safe}}
+	    	</div>
+    	{% endfor %}
+    	<a href="{% url 'obra-autor' id=autor.pk %}" class="btn btn-default">Más</a>
+    </div>
+</div>
+ <div class="well">
+     <h3>Portafolio</h3>
+    <div class="row">
+    	<!--<a href="autores-obras.html">
+    		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 pull-right">
+    			<i class="icon-plus icon-4x"></i>
+    			<p class="fecha">Más</p>
+    		</div>
+    	</a>-->
+    	{% for image in images %}
+    	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+    		<a href="/media/{{image.cover}}" rel="shadowbox">
+    			<img src="/media/{{image.cover}}" class="img-responsive">
+    		</a>
+    		<p class="fecha">{{image.title}}</p>
+    	</div>
+    	{% endfor %}
+    </div>
+</div>
+ <div class="well">
+    <h3> Noticias </h3>
+        	{% for noticia in noticias|slice:":2" %}
+        	<div style="overflow: hidden; clear:both;">
+        	<h4>{{noticia.title}}</h4>
+        	{{ noticia.body|safe}}
+        	</div>
+        	<hr/>
+        	{% endfor %}
+        	<a href={% url "page-author" id=autor.pk page_nro=1 %} class="btn btn-default">Más</a>
+ </div>
+{% endblock %}

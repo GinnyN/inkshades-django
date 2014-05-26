@@ -1,0 +1,21 @@
+{% extends "head.html" %}
+{% block body %}
+<h2> Editar Obra </h2>
+<h3> Editar Links </h3>
+<hr/>
+{%for link in links%}
+	<form action="" method=POST enctype="multipart/form-data">
+		{% csrf_token %}
+		<input type=hidden value="{{link.pk}}" name="id"/>
+		<a href="{{link.url}}">{{link.title}}</a>
+		<button class="btn btn-danger">Borrar</button>
+	</form>
+{%endfor%}
+</form>
+<hr/>
+<form action="" method=POST enctype="multipart/form-data">
+	{% csrf_token %}
+	{{form.as_p}}
+	<button class="btn btn-primary">Postear</button>
+</form>
+{% endblock %}

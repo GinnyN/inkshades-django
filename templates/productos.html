@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}
+Nuestros Productos
+{% endblock %}
+{%block menu-producto %}class="active"{% endblock %}
+{%block menu-producto-movil %}class="active"{% endblock %}
+{% block body %}
+<h2>Nuestros Productos</h2>
+{{productos.body|safe}}
+{% endblock %}

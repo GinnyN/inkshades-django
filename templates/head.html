@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href={% static "js/shadowbox-3.0.3/shadowbox.css" %} media="screen" />
+		<link href="{% static "js/datepicker/jquery.datetimepicker.css" %}" rel="stylesheet">
+		<link href="{% static "css/stylesheet-back.css" %}" rel="stylesheet">
+		<!-- Javascript -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script src="{% static 'js/shadowbox-3.0.3/shadowbox.js' %}"></script>
+		<script src="{% static "js/datepicker/jquery.datetimepicker.js" %}"></script>
+		<script src="{% static "js/script.js" %}"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			    <span class="sr-only">Toggle navigation</span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#">Ink Shades Admin</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+			    	<li><a href="{% url 'news-list'%}">Noticias</a></li>
+			    	<li><a href="{% url 'list-obras'%}">Obras</a></li>
+			    	<li><a href="{% url 'portfolio-list'%}">Portfolio</a></li>
+			    	<li><a href="{% url 'perfil'%}">Perfil</a></li>
+			    </li>
+			  </ul>
+			  <ul class="nav navbar-nav navbar-right">
+		        <li><a href="{% url 'logout'  %}">Logout</a></li>
+		      </ul>
+			</div><!-- /.navbar-collapse -->
+			
+			</div><!-- /.container-fluid -->
+		</nav>
+		<div class="container">
+			{% block body %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
