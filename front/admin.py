@@ -5,7 +5,7 @@ from django_summernote.admin import SummernoteModelAdmin
 
 class PostAdmin(SummernoteModelAdmin):
 	pass
-admin.site.register(models.Author)
+admin.site.register(models.Author,PostAdmin)
 admin.site.register(models.Setting)
 admin.site.register(models.Publicity)
 admin.site.register(models.Afiliate)
