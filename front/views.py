@@ -92,7 +92,7 @@ class Autores(TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(Autores, self).get_context_data(**kwargs)
-		context["autores"] = models.Author.objects.order_by("user")
+		context["autores"] = models.Author.objects.order_by("username")
 		context["links"] = models.LinkAuthor.objects.all()
 		return context
 
