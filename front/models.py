@@ -20,7 +20,7 @@ class Setting(models.Model):
 	subcultura = models.CharField(max_length=500,verbose_name=u"Subcultura", blank=True)
 
 class Author(models.Model):
-	user = models.ForeignKey(User)
+	user = models.OneToOneField(User)
 	avatar = models.ImageField(upload_to="avatar/",blank=True)
 	bio = models.TextField()
 
