@@ -9,7 +9,7 @@ Autores
 <ul class="media-list">
 	{% for autor in autores %}
   <li class="media well">
-    <a class="pull-left media-img" href="autores-detail.html">
+    <a class="pull-left media-img" href="{% url "autor" id=autor.pk %}">
       <img class="media-object img-responsive" src="/media/{{autor.avatar}}" alt="...">
     </a>
     <div class="media-body">
