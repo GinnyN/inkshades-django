@@ -32,7 +32,7 @@
 					    status = response.status;
 
 					    if(response.status = "connected"){
-							$("#facebook-login").html("<img src=http://graph.facebook.com/"+response.authResponse.userID+"/picture/>");
+							$("#facebook-login").html("<img src=http://graph.facebook.com/"+response.authResponse.userID+"/picture/ class='facebookAvatar'>");
 					    }
 					});
 			  	};
