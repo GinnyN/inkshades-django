@@ -36,13 +36,13 @@
 							    "/me/picture",
 							    function (responseImage) {
 							      if (responseImage && !responseImage.error) {
-							        console.log(response);
+							        console.log(responseImage);
+							        //$("#facebook-login").html("graph.facebook.com//picture");
 							      }else{
-							      	console.log(response);
+									console.log("Login Error!");
 							      }
 							    }
 							);
-					    	//$("#facebook-login").html("");
 					    }
 					});
 			  	};
