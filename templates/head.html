@@ -18,21 +18,42 @@
 		<!-- Facebook Api -->
 
 			<script>
-			  window.fbAsyncInit = function() {
-			    FB.init({
-			      appId      : '684922488297525',
-			      xfbml      : true,
-			      version    : 'v2.2'
-			    });
-			  };
+				var status; 
 
-			  (function(d, s, id){
-			     var js, fjs = d.getElementsByTagName(s)[0];
-			     if (d.getElementById(id)) {return;}
-			     js = d.createElement(s); js.id = id;
-			     js.src = "//connect.facebook.net/es_CL/sdk.js";
-			     fjs.parentNode.insertBefore(js, fjs);
-			   }(document, 'script', 'facebook-jssdk'));
+			  	window.fbAsyncInit = function() {
+				    FB.init({
+				      appId      : '684922488297525',
+				      xfbml      : true,
+				      version    : 'v2.2'
+				    });
+			  	};
+
+			  	(function(d, s, id){
+				    var js, fjs = d.getElementsByTagName(s)[0];
+				    if (d.getElementById(id)) {return;}
+				    js = d.createElement(s); js.id = id;
+				    js.src = "//connect.facebook.net/es_CL/sdk.js";
+				    fjs.parentNode.insertBefore(js, fjs);
+			   	}(document, 'script', 'facebook-jssdk'));
+
+			  	FB.getLoginStatus(function(response) {
+				    statusChangeCallback(response);
+				    status = response->status;
+
+				    if(response->status = "connected"){
+				    	FB.api(
+						    "/me/picture",
+						    function (responseImage) {
+						      if (responseImage && !responseImage.error) {
+						        console.log(response);
+						      }else{
+						      	console.log(response);
+						      }
+						    }
+						);
+				    	//$("#facebook-login").html("");
+				    }
+				});
 			</script>
 
 		<!-- -->
@@ -60,7 +81,7 @@
 			  </ul>
 			  <ul class="nav navbar-nav navbar-right">
 			  	<li>
-			  		<a>
+			  		<a id="facebook-login">
 			  			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 						</fb:login-button>
 					</a>
