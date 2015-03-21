@@ -24,6 +24,27 @@
 		<script src="{% static 'js/script.js' %}"></script>
 	</head>
 	<body>
+		<!-- Facebook Api -->
+
+			<script>
+			  window.fbAsyncInit = function() {
+			    FB.init({
+			      appId      : '684922488297525',
+			      xfbml      : true,
+			      version    : 'v2.2'
+			    });
+			  };
+
+			  (function(d, s, id){
+			     var js, fjs = d.getElementsByTagName(s)[0];
+			     if (d.getElementById(id)) {return;}
+			     js = d.createElement(s); js.id = id;
+			     js.src = "//connect.facebook.net/es_CL/sdk.js";
+			     fjs.parentNode.insertBefore(js, fjs);
+			   }(document, 'script', 'facebook-jssdk'));
+			</script>
+
+		<!-- -->
 		<div class="container">
 			<img src="{% static 'img/banner.jpg' %}" class="img-responsive"/>
 			<h1 style="display: none;"> Ink Shades - ¡El Poder de la Tinta! </h1>

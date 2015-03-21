@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'front',
     'back',
-    'south',
+    #'south',
     'django_summernote',
     'captcha'
 )
