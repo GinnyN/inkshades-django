@@ -38,9 +38,9 @@
 
 			  	FB.getLoginStatus(function(response) {
 				    statusChangeCallback(response);
-				    status = response->status;
+				    status = response.status;
 
-				    if(response->status = "connected"){
+				    if(response.status = "connected"){
 				    	FB.api(
 						    "/me/picture",
 						    function (responseImage) {
