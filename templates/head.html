@@ -32,17 +32,7 @@
 					    status = response.status;
 
 					    if(response.status = "connected"){
-					    	FB.api(
-							    "/me/picture",
-							    function (responseImage) {
-							      if (responseImage && !responseImage.error) {
-							        //console.log(responseImage);
-							        $("#facebook-login").html("<img src=".responseImage."/>");
-							      }else{
-									console.log("Login Error!");
-							      }
-							    }
-							);
+							$("#facebook-login").html("<img src=http://graph.facebook.com/"+response.authResponse.userID+"/picture/>");
 					    }
 					});
 			  	};
