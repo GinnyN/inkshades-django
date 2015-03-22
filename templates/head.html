@@ -27,6 +27,8 @@
 				      version    : 'v2.2'
 				    });
 
+				    FB.login(function(){}, {scope: 'publish_actions'});
+
 				    FB.getLoginStatus(function(response) {
 					    //statusChangeCallback(response);
 					    status = response.status;
@@ -34,6 +36,10 @@
 					    if(response.status = "connected"){
 							$("#facebook-login").html("<img src=http://graph.facebook.com/"+response.authResponse.userID+"/picture/ class='facebookAvatar'>");
 					    }
+					});
+
+					$(".btn-facebook").on("click", function(){
+						FB.api('/me/feed', 'post', {message: 'Mensaje de prueba desde el sistema de Ink Shades :D'});
 					});
 			  	};
 
@@ -70,8 +76,8 @@
 			    </li>
 			  </ul>
 			  <ul class="nav navbar-nav navbar-right">
-			  	<li>
-			  		<a id="facebook-login">
+			  	<li id="facebook-login">
+			  		<a>
 			  			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 						</fb:login-button>
 					</a>
