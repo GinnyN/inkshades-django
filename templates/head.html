@@ -39,7 +39,7 @@
 					});
 
 					$(".btn-facebook").on("click", function(){
-						FB.api('/me/feed', 'post', {message: 'Mensaje de prueba desde el sistema de Ink Shades :D'},
+						FB.api('/Ink.Shades/feed', 'post', {message: 'Mensaje de prueba desde el sistema de Ink Shades :D'},
 							function(response) {
 					            if (!response || response.error) {
 					                console.log('Error occured');
