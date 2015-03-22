@@ -27,7 +27,7 @@
 				      version    : 'v2.2'
 				    });
 
-				    FB.login(function(){}, {scope: 'publish_actions', 'manage_pages', 'publish_stream'});
+				    FB.login(function(){}, {scope: 'publish_actions manage_pages publish_stream'});
 
 				    FB.getLoginStatus(function(response) {
 					    //statusChangeCallback(response);
