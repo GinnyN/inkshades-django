@@ -32,7 +32,7 @@
 
 				    FB.login(function(){}, {scope: 'publish_actions manage_pages publish_stream'});
 
-				    FB.api('/me/accounts', 'get', , function(response){
+				    FB.api('/me/accounts', 'get', function(response){
 				    	console.log(response);
 				    })
 
