@@ -21,6 +21,9 @@
 				var status; 
 
 			  	window.fbAsyncInit = function() {
+
+			  		var auth_token;
+
 				    FB.init({
 				      appId      : '684922488297525',
 				      xfbml      : true,
@@ -28,6 +31,10 @@
 				    });
 
 				    FB.login(function(){}, {scope: 'publish_actions manage_pages publish_stream'});
+
+				    FB.api('/me/accounts', 'get', , function(response){
+				    	console.log(response);
+				    })
 
 				    FB.getLoginStatus(function(response) {
 					    //statusChangeCallback(response);
