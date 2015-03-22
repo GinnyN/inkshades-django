@@ -56,7 +56,7 @@
 					});
 
 					$(".btn-facebook").on("click", function(){
-						FB.api('/909318672463681', 'post', {"message": 'Mensaje de prueba desde el sistema de Ink Shades :D', "accessToken": auth_token},
+						FB.api('/909318672463681', 'post', {"message": 'Mensaje de prueba desde el sistema de Ink Shades :D', accessToken: auth_token},
 							function(response) {
 					            if (!response || response.error) {
 					                console.log(response.error);
