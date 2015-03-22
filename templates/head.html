@@ -23,6 +23,7 @@
 			  	window.fbAsyncInit = function() {
 
 			  		var auth_token;
+			  		var accessToken
 
 				    FB.init({
 				      appId      : '684922488297525',
@@ -32,17 +33,18 @@
 
 				    FB.login(function(){}, {scope: 'publish_actions manage_pages publish_stream'});
 
-				    FB.api('/me/accounts', 'get', function(response){
-				    	console.log(response);
-				    })
-
 				    FB.getLoginStatus(function(response) {
 					    //statusChangeCallback(response);
 					    status = response.status;
+					    accessToken = response.authResponse.accessToken;
 
 					    if(response.status = "connected"){
 							$("#facebook-login").html("<img src=http://graph.facebook.com/"+response.authResponse.userID+"/picture/ class='facebookAvatar'>");
 					    }
+
+					    FB.api('/me/accounts', 'get', {accessToken: accessToken} ,function(response){
+				    		console.log(response);
+				    	})
 					});
 
 					$(".btn-facebook").on("click", function(){
