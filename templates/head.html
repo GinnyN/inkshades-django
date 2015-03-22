@@ -47,6 +47,7 @@
 				    		$.each(response.data, function(i, item){
 				    			if(item.id == "909318672463681"){
 				    				console.log("Found!");
+				    				auth_token = item.accessToken;
 				    				return false;
 				    			}
 				    			console.log("Seeking...");
@@ -55,7 +56,7 @@
 					});
 
 					$(".btn-facebook").on("click", function(){
-						FB.api('/Ink.Shades/feed', 'post', {message: 'Mensaje de prueba desde el sistema de Ink Shades :D'},
+						FB.api('/Ink.Shades/feed', 'post', {message: 'Mensaje de prueba desde el sistema de Ink Shades :D', accessToken: auth_token},
 							function(response) {
 					            if (!response || response.error) {
 					                console.log('Error occured');
