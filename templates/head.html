@@ -44,7 +44,7 @@
 
 					    FB.api('/me/accounts', 'get', {accessToken: accessToken} ,function(response){
 				    		console.log(response);
-				    		$.each(response.data, function(item){
+				    		$.each(response.data, function(i, item){
 				    			if(item.id == "909318672463681"){
 				    				console.log("Found!");
 				    				return false;
