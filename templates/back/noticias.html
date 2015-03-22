@@ -11,6 +11,7 @@
           {{new.title}} - {{new.date}} 
           <a href={% url 'delete-news' id=new.pk %} class="btn btn-danger pull-right delete">Borrar</a> 
           <a href={% url 'update-news' id=new.pk %} class="btn btn-primary pull-right">Editar</a>
+          <a class="btn pull-right btn-facebook">Postear en Facebook</a>
         </a>
       </h4>
     </div>

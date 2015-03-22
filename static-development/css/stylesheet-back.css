@@ -5,5 +5,9 @@
 	color:white;
 }
 .facebookAvatar{
-	width: 1em;
+	width: 2em;
+}
+.btn-facebook{
+	background: #3b5998;
+	color: white;
 }
