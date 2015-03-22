@@ -59,7 +59,7 @@
 						FB.api('/909318672463681', 'post', {message: 'Mensaje de prueba desde el sistema de Ink Shades :D', accessToken: auth_token},
 							function(response) {
 					            if (!response || response.error) {
-					                console.log('Error occured');
+					                console.log(response.error);
 					            } 
 					            else {
 					                console.log('Action was successful! Action ID: ' + response.id)
