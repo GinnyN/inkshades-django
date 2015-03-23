@@ -47,13 +47,15 @@
 				    		$.each(response.data, function(i, item){
 				    			if(item.id == "909318672463681"){
 				    				console.log("Found!");
-				    				auth_token = item.accessToken;
+				    				auth_token = item.access_token;
+				    				console.log(item.access_token);
+				    				console.log(item);
 				    				return false;
 				    			}
 				    			console.log("Seeking...");
 				    		})
 				    		$(".btn-facebook").on("click", function(){
-								FB.api('/909318672463681', 'post', {"message": 'Mensaje de prueba desde el sistema de Ink Shades :D', access_token: auth_token},
+								FB.api('/909318672463681/', 'post', {"message": 'Mensaje de prueba desde el sistema de Ink Shades :D', access_token: auth_token},
 									function(response) {
 							            if (!response || response.error) {
 							                console.log(response.error);
