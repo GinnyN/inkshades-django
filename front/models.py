@@ -18,6 +18,7 @@ class Setting(models.Model):
 	tumblr = models.CharField(max_length=500,verbose_name=u"Tumblr", blank=True)
 	deviantart = models.CharField(max_length=500,verbose_name=u"DeviantArt", blank=True)
 	subcultura = models.CharField(max_length=500,verbose_name=u"Subcultura", blank=True)
+	facebookPageNumber = models.CharField(max_length=500,verbose_name=u"Facebook Page Number", blank=True)
 
 class Author(models.Model):
 	user = models.OneToOneField(User)
