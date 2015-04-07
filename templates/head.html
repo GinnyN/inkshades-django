@@ -15,6 +15,7 @@
 		<script src="{% static "js/script.js" %}"></script>
 	</head>
 	<body>
+		{% if current %}
 		<!-- Facebook Api -->
 
 			<script>
@@ -56,7 +57,7 @@
 								FB.api('/909318672463681/feed/', 'post', {
 									"message": $(this).data("fbresume"), 
 									access_token: auth_token,
-									"link": "{{ request.META.HTTP_HOST }}"+$(this).data("fblink")},
+									"link": "{{ current }}"+$(this).data("fblink")},
 									function(response) {
 							            if (!response || response.error) {
 							                console.log(response.error);
@@ -79,7 +80,7 @@
 				    fjs.parentNode.insertBefore(js, fjs);
 			   	}(document, 'script', 'facebook-jssdk'));
 			</script>
-
+		{% endif %}
 		<!-- -->
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">

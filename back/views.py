@@ -36,6 +36,7 @@ class NewsList(TemplateView):
 		context = super(NewsList, self).get_context_data(**kwargs)
 		author = models.Author.objects.get(user=self.request.user)
 		context["news"] = models.Post.objects.filter(author=author).order_by("date").reverse()
+		context["current"] = request.REQUEST.get('page') or request.META.get('PATH_INFO') or ""
 		return context
 
 	@method_decorator(login_required)
