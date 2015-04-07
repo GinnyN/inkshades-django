@@ -46,7 +46,7 @@
 					    FB.api('/me/accounts', 'get', {accessToken: accessToken} ,function(response){
 				    		console.log(response);
 				    		$.each(response.data, function(i, item){
-				    			if(item.id == "909318672463681"){
+				    			if(item.id == "{{facebookNumber}}"){
 				    				console.log("Found!");
 				    				auth_token = item.access_token;
 				    				return false;
@@ -54,7 +54,7 @@
 				    			console.log("Seeking...");
 				    		})
 				    		$(".btn-facebook").on("click", function(){
-								FB.api('/909318672463681/feed/', 'post', {
+								FB.api('/{{facebookNumber}}/feed/', 'post', {
 									"message": $(this).data("fbresume"), 
 									access_token: auth_token,
 									"link": "http://{{ current }}/"+$(this).data("fblink")},

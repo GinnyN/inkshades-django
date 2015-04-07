@@ -37,6 +37,7 @@ class NewsList(TemplateView):
 		author = models.Author.objects.get(user=self.request.user)
 		context["news"] = models.Post.objects.filter(author=author).order_by("date").reverse()
 		context["current"] = self.request.META['HTTP_HOST']
+		context["facebookNumber"] = models.Settings.objects.get(pk=1).facebookPageNumber
 		return context
 
 	@method_decorator(login_required)
