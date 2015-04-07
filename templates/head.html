@@ -56,7 +56,7 @@
 								FB.api('/909318672463681/feed/', 'post', {
 									"message": $(this).data("fbresume"), 
 									access_token: auth_token,
-									"link": $(this).data("fblink")},
+									"link": "{{ request.META.HTTP_HOST }}"+$(this).data("fblink")},
 									function(response) {
 							            if (!response || response.error) {
 							                console.log(response.error);
