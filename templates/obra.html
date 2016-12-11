@@ -20,7 +20,7 @@
 				<a href='{% url "tags" tag=tag.name %}' class="badge pull-right">{{ tag.name }}</a>
       		{% endfor %}
 		</div>
-		{{ obra.resume }}
+		{{ obra.resume|safe|escape  }}
 	</div>
 </div>
 <div class="panel-group" id="accordion">

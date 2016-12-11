@@ -134,6 +134,6 @@ class Productos(TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(Productos, self).get_context_data(**kwargs)
-		context["productos"] = models.Productos.objects.get(pk=1)
+		context["productos"] = models.Productos.objects.all()
 		return context	
     

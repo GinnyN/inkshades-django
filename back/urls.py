@@ -1,9 +1,9 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url, include
 from back import views 
 from django.contrib.auth.decorators import login_required
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     # url(r'^$', 'inkshades.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
@@ -34,5 +34,5 @@ urlpatterns = patterns('',
     url(r'^perfil/password/$', views.PerfilPassword.as_view(), name='perfil-password'),
     url(r'^perfil/info/$', views.PerfilInfo.as_view(), name='perfil-info'),
     #url(r'^noticias/$', views.Administrator.as_view(), name='administrator'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/back/'}, name="logout"),
-)
+    url(r'^logout/$', views.logout_view, name="logout"),
+]

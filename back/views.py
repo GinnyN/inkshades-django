@@ -13,6 +13,12 @@ from front import models
 
 # Create your views here.
 
+from django.contrib.auth import logout
+
+def logout_view(request):
+	logout(request)
+	return redirect("login")
+
 class Login(FormView):	
 	template_name = 'auth.html'
 	form_class = AuthenticationForm
@@ -37,7 +43,7 @@ class NewsList(TemplateView):
 		author = models.Author.objects.get(user=self.request.user)
 		context["news"] = models.Post.objects.filter(author=author).order_by("date").reverse()
 		context["current"] = self.request.META['HTTP_HOST']
-		context["facebookNumber"] = models.Settings.objects.get(pk=1).facebookPageNumber
+		context["facebookNumber"] = models.Setting.objects.get(pk=1).facebookPageNumber
 		return context
 
 	@method_decorator(login_required)

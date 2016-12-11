@@ -1,7 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url
 from front import views 
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     # url(r'^$', 'inkshades.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
@@ -19,4 +19,4 @@ urlpatterns = patterns('',
     url(r'^contacto/$', views.Contacto.as_view(), name='contacto'),
     url(r'^gracias/$', views.Gracias.as_view(), name='gracias'),
     url(r'^productos/$', views.Productos.as_view(), name='productos'),
-)
+]

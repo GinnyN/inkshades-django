@@ -1,0 +1,13 @@
+.panel-heading{
+	overflow: hidden;
+}
+.panel-heading a.btn{
+	color:white;
+}
+.facebookAvatar{
+	width: 2em;
+}
+.btn-facebook{
+	background: #3b5998;
+	color: white;
+}

@@ -2,26 +2,27 @@ from django import forms
 from django.contrib.auth.models import User
 from captcha.fields import CaptchaField
 from front import models
-from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+from tinymce.models import HTMLField
 
 class NewsForm(forms.ModelForm):
+	body = HTMLField()
 	def __init__(self,*args,**kwargs):
 		self.request = kwargs.pop('request', None)
 		super (NewsForm,self ).__init__(*args,**kwargs)
-		self.fields['title'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
-		self.fields['body'].widget = SummernoteWidget(attrs={'required':"required"})
-		self.fields['date'].widget = forms.TextInput(attrs={'class': 'form-control datepicker', 'required':"required"})
+		self.fields['title'].widget=forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
+		self.fields['date'].widget=forms.TextInput(attrs={'class': 'form-control datepicker', 'required':"required"})
 
 	class Meta:
 		model = models.Post
 		exclude = ["author"]
 
 class ObraForm(forms.ModelForm):
+	resume = HTMLField()
 	def __init__(self,*args,**kwargs):
 		self.request = kwargs.pop('request', None)
 		super (ObraForm,self ).__init__(*args,**kwargs)
 		self.fields['title'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
-		self.fields['resume'].widget = SummernoteWidget(attrs={'required':"required"})
+
 		
 	class Meta:
 		model = models.Obra
@@ -35,6 +36,7 @@ class TagForm(forms.ModelForm):
 		
 	class Meta:
 		model = models.TagObra
+		fields = ["name"]
 
 class LinkObraForm(forms.ModelForm):
 	def __init__(self,*args,**kwargs):
@@ -48,11 +50,11 @@ class LinkObraForm(forms.ModelForm):
 		exclude = ["obra"]
 
 class ChapterForm(forms.ModelForm):
+	body = HTMLField()
 	def __init__(self,*args,**kwargs):
 		self.request = kwargs.pop('request', None)
 		super (ChapterForm,self ).__init__(*args,**kwargs)
 		self.fields['title'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
-		self.fields['resume'].widget = SummernoteWidget(attrs={'required':"required"})
 
 	class Meta:
 		model = models.Chapter
@@ -90,10 +92,10 @@ class UserForm(forms.ModelForm):
 		'date_joined']
 
 class AuthorForm(forms.ModelForm):
+	bio = HTMLField()
 	def __init__(self,*args,**kwargs):
 		self.request = kwargs.pop('request', None)
 		super (AuthorForm,self ).__init__(*args,**kwargs)
-		self.fields['bio'].widget =  SummernoteWidget(attrs={'required':"required"})
 	
 	class Meta:
 		model = models.Author
