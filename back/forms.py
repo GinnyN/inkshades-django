@@ -2,80 +2,68 @@ from django import forms
 from django.contrib.auth.models import User
 from captcha.fields import CaptchaField
 from front import models
-from tinymce.models import HTMLField
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
 class NewsForm(forms.ModelForm):
-	body = HTMLField()
-	def __init__(self,*args,**kwargs):
-		self.request = kwargs.pop('request', None)
-		super (NewsForm,self ).__init__(*args,**kwargs)
-		self.fields['title'].widget=forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
-		self.fields['date'].widget=forms.TextInput(attrs={'class': 'form-control datepicker', 'required':"required"})
 
 	class Meta:
 		model = models.Post
 		exclude = ["author"]
+		widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
+			'body': SummernoteWidget(attrs={'class': 'form-control', 'required':"required"}),
+            'date': forms.TextInput(attrs={'class': 'form-control datepicker', 'required':"required"})
+		}
 
 class ObraForm(forms.ModelForm):
-	resume = HTMLField()
-	def __init__(self,*args,**kwargs):
-		self.request = kwargs.pop('request', None)
-		super (ObraForm,self ).__init__(*args,**kwargs)
-		self.fields['title'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
-
 		
 	class Meta:
 		model = models.Obra
 		exclude = ["author","tags"]
+		widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
+			'resume': SummernoteWidget(attrs={'class': 'form-control', 'required':"required"}),
+		}
 
 class TagForm(forms.ModelForm):
-	def __init__(self,*args,**kwargs):
-		self.request = kwargs.pop('request', None)
-		super (TagForm,self ).__init__(*args,**kwargs)
-		self.fields['name'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
 		
 	class Meta:
 		model = models.TagObra
 		fields = ["name"]
+		widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
+		}
 
 class LinkObraForm(forms.ModelForm):
-	def __init__(self,*args,**kwargs):
-		self.request = kwargs.pop('request', None)
-		super (LinkObraForm,self ).__init__(*args,**kwargs)
-		self.fields['title'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
-		self.fields['url'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
 		
 	class Meta:
 		model = models.LinkObra
 		exclude = ["obra"]
+		widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
+			'url': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
+		}
 
 class ChapterForm(forms.ModelForm):
-	body = HTMLField()
-	def __init__(self,*args,**kwargs):
-		self.request = kwargs.pop('request', None)
-		super (ChapterForm,self ).__init__(*args,**kwargs)
-		self.fields['title'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
 
 	class Meta:
 		model = models.Chapter
 		exclude = ["obra"]
+		widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
+			'body': SummernoteWidget(attrs={'class': 'form-control', 'required':"required"}),
+		}
 
 class ImageForm(forms.ModelForm):
-	def __init__(self,*args,**kwargs):
-		self.request = kwargs.pop('request', None)
-		super (ImageForm,self ).__init__(*args,**kwargs)
-		self.fields['title'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
 
 	class Meta:
 		model = models.Image
 		exclude = ["author"]
+		widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
+		}
 
 class UserForm(forms.ModelForm):
-	def __init__(self,*args,**kwargs):
-		self.request = kwargs.pop('request', None)
-		super (UserForm,self ).__init__(*args,**kwargs)
-		self.fields['username'].widget = forms.TextInput(attrs={'class': 'form-control', 'required':"required"})
-		self.fields['email'].widget = forms.EmailInput(attrs={'class': 'form-control', 'required':"required"})
 
 	class Meta:
 		model = User
@@ -90,13 +78,16 @@ class UserForm(forms.ModelForm):
 		'is_superuser',
 		'last_login',
 		'date_joined']
+		widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
+			'email': forms.EmailInput(attrs={'class': 'form-control', 'required':"required"}), 
+		}
 
 class AuthorForm(forms.ModelForm):
-	bio = HTMLField()
-	def __init__(self,*args,**kwargs):
-		self.request = kwargs.pop('request', None)
-		super (AuthorForm,self ).__init__(*args,**kwargs)
 	
 	class Meta:
 		model = models.Author
 		exclude = ["user"]
+		widgets = {
+			'bio': SummernoteWidget(attrs={'class': 'form-control', 'required':"required"}),
+		}

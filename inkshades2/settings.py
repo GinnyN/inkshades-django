@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'front',
     'back',
     #'south',
-    #'django_summernote',
-    'tinymce',
+    'django_summernote',
+    #'tinymce',
     'captcha'
 ]
 

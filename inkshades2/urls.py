@@ -20,8 +20,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-     #url(r'^summernote/', django_summernote.urls),
-    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^summernote/', include('django_summernote.urls')),
+    #url(r'^tinymce/', include('tinymce.urls')),
     url(r'^',include('front.urls')),
     url(r'^back/',include('back.urls')),
     url(r'^captcha/', include('captcha.urls')),
