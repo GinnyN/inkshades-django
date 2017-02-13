@@ -5,6 +5,26 @@
 <form action="" method=POST enctype="multipart/form-data">
 	{% csrf_token %}
 	{{ form.as_p }}
+	{% if pages %}
+		<h3> Páginas </h3>
+		<a class="btn btn-success" id="agregarPaginaEdit">Agregar Página</a>
+		<ul id="paginas">
+		{% for page in pages %}
+			<li>
+				<input type="hidden" name="pk" value="{{page.pk}}"/>
+				<input type="text" value="{{page.order}}" name="orden{{page.pk}}"/> - 
+				Actual: <a href="/media/{{page.page}}" target="_blank">{{page.page}}</a> 
+				<input type="file" name="page{{page.pk}}">
+				<input type="checkbox" name="borrar{{page.pk}}"/> Borrar?
+			</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
 	<button class="btn btn-primary">Postear</button>
 </form>
+			<li class="copy" style="display: none;">
+				<span class="btn btn-danger removeLi"><i class="fa fa-times" aria-hidden="true"></i></span>
+				<input type="text" name="orden"/> -
+				<input type="file" name="page">
+			</li>
 {% endblock %}

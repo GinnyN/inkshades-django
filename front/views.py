@@ -86,6 +86,16 @@ class Obra(TemplateView):
 		context["links"] = models.LinkObra.objects.filter(obra=context["obra"])
 		return context
 
+class Capitulo(TemplateView):
+
+	template_name = "capitulo.html"
+
+	def get_context_data(self, **kwargs):
+		context = super(Capitulo, self).get_context_data(**kwargs)
+		context["chapter"] = models.Chapter.objects.get(pk=kwargs["id"])
+		context["pages"] = models.Page.objects.filter(chapter=context["chapter"]).order_by("order")
+		return context
+
 class Autores(TemplateView):
 
 	template_name = "autores.html"

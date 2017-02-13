@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+{{ obra.title }}
+{% endblock %}
+{%block menu-obras %}class="active"{% endblock %}
+{%block menu-obras-movil %}class="active"{% endblock %}
+{% block body %}
+<h2>{{ chapter.obra.title }}</h2>
+<h3>Por {{chapter.obra.author.user.username}}</h3>
+<a class="btn btn-danger" href="{% url 'obra' id=chapter.obra.pk %}"><-</a>
+{% for page in pages %}
+<p> <img src="/media/{{page.page}}"/> </p>
+{% endfor %}
+<a class="btn btn-danger" href="{% url 'obra' id=chapter.obra.pk %}"><-</a>
+{% endblock %}

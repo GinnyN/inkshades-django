@@ -22,7 +22,7 @@ class ObraForm(forms.ModelForm):
 		exclude = ["author","tags"]
 		widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
-			'resume': SummernoteWidget(attrs={'class': 'form-control', 'required':"required"}),
+			'resume': SummernoteWidget(attrs={'class': 'form-control', 'required':"required"})
 		}
 
 class TagForm(forms.ModelForm):
@@ -51,7 +51,7 @@ class ChapterForm(forms.ModelForm):
 		exclude = ["obra"]
 		widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'required':"required"}), 
-			'body': SummernoteWidget(attrs={'class': 'form-control', 'required':"required"}),
+			'resume': SummernoteWidget(attrs={'class': 'form-control', 'required':"required"}),
 		}
 
 class ImageForm(forms.ModelForm):

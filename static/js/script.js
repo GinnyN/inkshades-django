@@ -8,6 +8,12 @@ $(document).on("ready", function(){
 		if(a){
 			window.location = $(this).attr("href");
 		}
-	})
+	});
+	$("#agregarPagina").on("click", function(event){
+		event.preventDefault();
+		htmlPagina = $("#paginas li:last-child").html();
+		console.log(htmlPagina);
+	});
 });
 Shadowbox.init();
+

@@ -69,6 +69,14 @@ class Chapter(models.Model):
 	def __unicode__(self):
 		return '%s' % self.title
 
+class Page(models.Model):
+	chapter = models.ForeignKey(Chapter)
+	order = models.IntegerField(verbose_name="Orden")
+	page = models.ImageField(upload_to="pages/", verbose_name=u"Páginas", blank=True)
+
+	def __unicode__(self):
+		return self.chapter.title + ": Page "+str(self.order)
+
 class LinkObra(models.Model):
 	title = models.CharField(max_length=500,verbose_name=u"Título")
 	url= models.CharField(max_length=500,verbose_name="URL")

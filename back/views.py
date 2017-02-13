@@ -251,8 +251,10 @@ class DeleteChapter(View):
 class EditChapter(View):
 
 	def get(self, request, id, id_chapter):
-		form = forms.ChapterForm(instance=models.Chapter.objects.get(pk=id_chapter))
-		return render(request,"back/edit-chapter.html", {'form':form})
+		chapter = models.Chapter.objects.get(pk=id_chapter)
+		form = forms.ChapterForm(instance=chapter)
+		pages = models.Page.objects.filter(chapter=chapter).order_by("order")
+		return render(request,"back/edit-chapter.html", {'form':form, 'pages':pages})
 
 	def post(self, request, id, id_chapter):
 		form = forms.ChapterForm(request.POST, request.FILES)
@@ -263,6 +265,19 @@ class EditChapter(View):
 			if form.cleaned_data["cover"]:
 				news.cover=form.cleaned_data["cover"]
 			news.save()
+			request.POST["orden"]
+			for pk in request.POST.getlist("pk"):
+				page = models.Page.objects.get(pk=pk)
+				try:
+					if request.POST["borrar"+str(pk)] == "on":
+						page.delete()
+				except:
+					page.order = request.POST["orden"+str(pk)]
+					try:
+						page.page = request.FILES["page"+str(pk)]
+					except:
+						pass
+					page.save()
 		return redirect("chapter-obras", id=id)
 
 	@method_decorator(login_required)
@@ -276,12 +291,21 @@ class NewChapter(View):
 		return render(request,"back/new-chapter.html", {'form':form})
 
 	def post(self, request, id):
+		
 		form = forms.ChapterForm(request.POST, request.FILES)
 		if form.is_valid():
-			models.Chapter(title=form.cleaned_data["title"],
+			chapter = models.Chapter(title=form.cleaned_data["title"],
 				resume=form.cleaned_data["resume"],
 				cover=form.cleaned_data["cover"],
-				obra=models.Obra.objects.get(pk=id)).save()
+				obra=models.Obra.objects.get(pk=id))
+			chapter.save()
+			try:
+				for (order,files) in zip(request.POST.getlist("order"),request.FILES.getlist("page")):
+					models.Page(chapter=chapter, order=order, page=files).save()
+			except:
+				pass
+			
+				#print order
 		return redirect("chapter-obras", id=id)
 
 	@method_decorator(login_required)

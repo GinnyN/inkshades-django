@@ -41,6 +41,9 @@
 			</div>
 			<div class="media-body">
 				{{chapter.resume|safe}}
+				{% if chapter.page_set.all.exists %}
+					<a class="btn btn-danger" href='{% url "capitulo" chapter.id %}'>Leer Capítulo</a>
+				{% endif %}
 			</div>
 		</div>
       </div>

@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^obras/tag/(?P<tag>.+)$', views.Obras.as_view(), name='tags'),
     url(r'^obras/autor/(?P<id>\d+)$', views.Obras.as_view(), name='obra-autor'),
     url(r'^obra/(?P<id>\d+)$', views.Obra.as_view(), name='obra'),
+    url(r'^obra/capitulo/(?P<id>\d+)$', views.Capitulo.as_view(), name='capitulo'),
     url(r'^autores/$', views.Autores.as_view(), name='autores'),
     url(r'^autor/(?P<id>\d+)$', views.Autor.as_view(), name='autor'),
     url(r'^venta/$', views.Venta.as_view(), name='venta'),

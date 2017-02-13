@@ -5,6 +5,25 @@
 <form action="" method=POST enctype="multipart/form-data">
 	{% csrf_token %}
 	{{ form.as_p }}
+	<p><input type="checkbox" id="chaptersBoolean" /> Agregar Páginas </p>
+	<div style="display:none;" id="uploadPage">
+		<a class="btn btn-success" id="agregarPagina">Agregar Página</a>
+		<ul id="paginas">
+			<li>
+				<span class="btn btn-danger removeLi"><i class="fa fa-times" aria-hidden="true"></i></span>
+				<input type="file" name="page" accept="image/*"/> | 
+				<input type="text" value="1" name="order" /> 
+				<i class="fa fa-arrows-v" aria-hidden="true"></i>
+			</li>
+		</ul>
+	</div>
 	<button class="btn btn-primary">Postear</button>
+	
 </form>
+<li class="copy" style="display: none;">
+				<span class="btn btn-danger removeLi"><i class="fa fa-times" aria-hidden="true"></i></span>
+				<input type="file" name="page" accept="image/*"/> | 
+				<input type="text" value="1" name="order" /> 
+				<i class="fa fa-arrows-v" aria-hidden="true"></i>
+			</li>
 {% endblock %}
